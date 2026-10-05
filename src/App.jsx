@@ -7,6 +7,7 @@ import BackToTop from './components/BackToTop.jsx'
 import CheerPopup from './components/CheerPopup.jsx'
 import Breadcrumbs from './components/Breadcrumbs.jsx'
 import ScrollProgress from './components/ScrollProgress.jsx'
+import TrialLock from './components/TrialLock.jsx'
 import HubPage from './pages/HubPage.jsx'
 
 // Every page but the home is its own chunk, fetched the first time it is
@@ -176,6 +177,20 @@ function App() {
         </button>
       </div>
     )
+  }
+
+  // Trial version: the text lessons (and their section video, quiz and
+  // summary) keep the section's title; the rest is locked.
+  if (SECTION_PAGE_CRUMB_KEYS[route.page] && route.sectionId) {
+    const lockedSection = lessons.sections.find((s) => s.id === route.sectionId)
+    if (lockedSection) {
+      content = (
+        <div className={`container ${styles.trialLesson}`}>
+          <h1 className={styles.trialLessonTitle}>{lockedSection.title}</h1>
+          <TrialLock>{content}</TrialLock>
+        </div>
+      )
+    }
   }
 
   // Breadcrumbs for the lesson flow only — top-level pages are one hop

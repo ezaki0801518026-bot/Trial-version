@@ -3,6 +3,7 @@ import glossary from '../../data/glossary.json'
 import lessons from '../../data/lessons.json'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import styles from './GlossaryPage.module.css'
+import TrialLock from '../components/TrialLock.jsx'
 import PrototypeNotice from '../components/PrototypeNotice.jsx'
 
 // Real reference content (not a "coming soon" stub) — concise definitions
@@ -34,9 +35,10 @@ function GlossaryPage({ navigate }) {
 
   return (
     <div className={styles.page}>
+      <h1 className={styles.title}>{t('glossaryTitle')}</h1>
+      <TrialLock>
       <PrototypeNotice messageKey="prototypeNoticeGeneral" />
       <div className={styles.intro}>
-        <h1 className={styles.title}>{t('glossaryTitle')}</h1>
         <p className={styles.description}>{t('glossaryDescription')}</p>
         <button type="button" className="btn btn-secondary" onClick={() => navigate('/washi-map')}>
           {t('washiMapFromGlossary')}
@@ -86,6 +88,7 @@ function GlossaryPage({ navigate }) {
           ))}
         </dl>
       )}
+      </TrialLock>
     </div>
   )
 }

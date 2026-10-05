@@ -12,6 +12,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 import styles from './CoursePage.module.css'
 import PrototypeNotice from '../components/PrototypeNotice.jsx'
 import HelpTip from '../components/HelpTip.jsx'
+import TrialLock from '../components/TrialLock.jsx'
 import { asset, picture } from '../utils/asset.js'
 
 // The video plan (data/upcoming.json): every video sits in one quadrant,
@@ -109,35 +110,11 @@ function CoursePage({ navigate }) {
           </div>
         </section>
 
-        {resume && (
-          <button
-            type="button"
-            className={styles.resumeCard}
-            onClick={() =>
-              navigate(resume.section.video ? `/video/${resume.section.id}` : `/lesson/${resume.section.id}`)
-            }
-          >
-            <span className={styles.resumeText}>
-              <span className={styles.resumeLabel}>{t('resumeLabel')}</span>
-              <span className={styles.resumeSection}>
-                {t('sectionLabel', { n: resumeIndex + 1 })} — {resume.section.title}
-              </span>
-              <span className={styles.resumeMeta}>
-                {t('resumeMeta', {
-                  step: resume.step + 1,
-                  total: resume.section.steps.length,
-                  min: Math.max(1, Math.round((resume.section.steps.length - resume.step) * 1.5)),
-                })}
-              </span>
-            </span>
-            <span className={styles.resumeCta}>{t('resumeCta')}</span>
-          </button>
-        )}
-
         <section className={styles.block}>
           <h2 id="track-foundations" className={styles.heading}>
-            {t('homeAvailableNow')}
+            {t('footerTextLessons')}
           </h2>
+          <TrialLock>
           <p className={`notice ${styles.draftNote}`} role="note">
             <span className="notice-tag">{t('prototypeTag')}</span>
             <span>{t('courseLessonsDraftNote')}</span>
@@ -166,6 +143,7 @@ function CoursePage({ navigate }) {
               )
             })}
           </div>
+          </TrialLock>
         </section>
 
         {comingCount > 0 && (

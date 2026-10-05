@@ -63,3 +63,19 @@
   line-height: var(--lh-heading);
   margin: 0 0 var(--space-6);
 }
+
+/* Trial version: a locked text lesson, titled. */
+.trialLesson {
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-8);
+}
+
+.trialLessonTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-title);
+  line-height: var(--lh-title);
+  font-weight: 600;
+  margin: 0 0 var(--space-4);
+  max-width: 40ch;
+  text-wrap: balance;
+}
