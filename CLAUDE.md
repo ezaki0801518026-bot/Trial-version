@@ -1,5 +1,5 @@
 > **このリポジトリはトライアル版（Trial-version）です。** 本番サイト（WA-Chain-Educational-content-prototype）を 2026-10-05 に複製し、次の制限を入れたもの。
-> - 使えない（タイトル以外をぼかし、「トライアル版では使えません。」を表示）: AI質問（`/chat`、ホームの Ask）、和紙マップ、和紙の単語辞書、Study Tour、Pricing、テキスト教材（講座ページの一覧と、各セクションの動画・本文・クイズ・まとめ）、用語辞典。部品は `src/components/TrialLock.jsx`。
+> - 使えない（タイトル以外をぼかし、「トライアル版では使えません。」を表示）: AI質問（`/chat`、ホームの Ask）、和紙マップ、和紙の単語辞書、Study Tour、Pricing、テキスト教材（講座ページの一覧と、各セクションの動画・本文・クイズ・まとめ）、用語辞典、コミュニティ（`/community`）、コホート（`/cohort`）。部品は `src/components/TrialLock.jsx`。
 > - AI はサーバー側でも停止: `functions/api/chat.js` は Anthropic を一切呼ばない（GET は ready:false / trial:true、POST は 403）。
 > - 使える: 講座の動画2本の視聴、チーム紹介（About）、活動報告（News）。
 > - 公開先は本番とは別の Cloudflare Pages プロジェクト。`ANTHROPIC_API_KEY` は登録しない。本番リポジトリには push しないこと。
