@@ -1,0 +1,114 @@
+/* Flush against the player, so it reads as part of the video frame rather
+   than a separate block below it. */
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-subtle);
+  border-radius: 0 0 var(--radius-2) var(--radius-2);
+}
+
+.skips {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.skip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 2.25rem;
+  font: inherit;
+  font-size: var(--text-small);
+  font-variant-numeric: tabular-nums;
+  padding: 0 var(--space-3);
+  color: var(--color-text);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) ease,
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.skip:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skip:hover {
+    border-color: var(--color-border-strong);
+  }
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.rates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+}
+
+.rateLabel {
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+  margin-right: var(--space-2);
+}
+
+.rate {
+  min-height: 2.25rem;
+  min-width: 2.9rem;
+  font: inherit;
+  font-size: var(--text-small);
+  font-variant-numeric: tabular-nums;
+  padding: 0 var(--space-2);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rate:hover {
+    color: var(--color-text);
+    background: var(--color-bg-hover);
+  }
+}
+
+/* The speed in effect has to be readable at a glance from across a desk. */
+.rate[aria-pressed='true'] {
+  color: var(--color-text);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-border);
+  font-weight: 600;
+}
+
+.hint {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 48em) {
+  .bar {
+    margin-inline: calc(-1 * var(--gutter));
+    border-radius: 0;
+    padding-inline: var(--gutter);
+  }
+
+  .hint {
+    display: none;
+  }
+}

@@ -1,0 +1,148 @@
+/* A translucent bar the page scrolls under (05 apple-design §12): the
+   content stays visible through it, and a hairline appears only once
+   something is actually beneath. */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--header-height);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0 var(--gutter);
+  padding-top: env(safe-area-inset-top, 0px);
+  background: color-mix(in oklab, var(--color-bg-page) 82%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow: 0 1px 0 transparent;
+  transition: box-shadow var(--dur-base) ease;
+}
+
+.headerScrolled {
+  box-shadow: 0 1px 0 var(--color-border-subtle);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .header {
+    background: var(--color-bg-page);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+.nav {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease;
+}
+
+.navLinkActive {
+  color: var(--color-text);
+  box-shadow: inset 0 -2px 0 var(--color-accent-solid);
+  border-radius: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .navLink:hover {
+    color: var(--color-text);
+    background: var(--color-bg-subtle);
+  }
+}
+
+.brand {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-2);
+  background: none;
+  border: none;
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.brandMark {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+  flex-shrink: 0;
+  /* The mark is a transparent PNG used as a mask, so it is drawn in the
+     brand blue on the light theme and in the text colour on the dark one. */
+  background: var(--color-brand);
+  mask: var(--mark) center / contain no-repeat;
+  -webkit-mask: var(--mark) center / contain no-repeat;
+}
+
+.brandName {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+}
+
+.controls {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.iconButton {
+  color: var(--color-text-secondary);
+}
+
+
+
+
+/* Five links no longer fit beside a centred brand below about 1150px, so
+   the links move into the menu there; the brand goes to the left edge. */
+@media (max-width: 72em) {
+  .header {
+    grid-template-columns: auto 1fr;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .brand {
+    justify-self: start;
+    padding-left: 0;
+  }
+
+  .brandName {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 30em) {
+  .brandName {
+    display: none;
+  }
+}

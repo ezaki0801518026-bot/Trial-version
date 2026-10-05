@@ -1,0 +1,53 @@
+/* The locked part of a page: a blurred preview of limited height that fades
+   out at the bottom, with the trial message resting on it. */
+.lock {
+  position: relative;
+  max-height: 40rem;
+  overflow: hidden;
+}
+
+.content {
+  filter: blur(7px);
+  user-select: none;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-16) var(--space-4) 0;
+}
+
+.message {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-2) var(--space-3);
+  max-width: 30rem;
+  margin: 0;
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-text);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-overlay);
+}
+
+@media (max-width: 36em) {
+  .lock {
+    max-height: 32rem;
+  }
+
+  .overlay {
+    padding-top: var(--space-10);
+  }
+}

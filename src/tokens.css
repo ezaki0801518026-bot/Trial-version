@@ -1,0 +1,362 @@
+/* Global design tokens and element resets, shared by every entry point.
+   Deliberately a plain stylesheet, NOT a CSS module: a side-effect-only
+   import of a *.module.css is tree-shaken out of a production build (it is
+   treated as an exports-only module), which silently strips these tokens
+   from any entry that does not otherwise use the module's class names.
+   Import this from each entry's bootstrap file, followed by ui.css.
+
+   Two tiers (see WA-Edu 03_設計計画):
+     1. primitives  — ramps named by hue and step. Never used by a page.
+     2. semantics   — named by role. This is what components reference.
+   The old single-tier names (--bg, --text, --accent, --seal …) remain as
+   aliases so pages not yet renovated keep rendering. */
+
+:root {
+  color-scheme: light;
+
+  /* ── 1. Primitives ─────────────────────────────────────────────── */
+  /* Neutral ramp with a trace of the accent hue: the greys sit with the
+     water-and-fibre photographs instead of fighting them. */
+  --n-0: #ffffff;
+  --n-50: #f8f9f8;
+  --n-100: #eff2f1;
+  --n-200: #e1e6e5;
+  --n-300: #c8d0cf;
+  --n-400: #889493;
+  --n-500: #5e6b6a;
+  --n-600: #566265;
+  --n-700: #3d474a;
+  --n-800: #262e31;
+  --n-900: #161c1e;
+  --n-950: #0d1112;
+
+  /* Accent: the deep water of a sukibune (vat), not a brand blue. */
+  --a-100: #dfeaee;
+  --a-200: #bcd3db;
+  --a-300: #8fb6c4;
+  --a-400: #5b91a5;
+  --a-500: #2f6478;
+  --a-600: #255262;
+  --a-700: #1c404d;
+  --a-800: #143039;
+
+  /* Status: one hue per meaning. `note` (persimmon tannin) means "not
+     final" — prototype pages, draft lessons. Never used for anything else. */
+  --ok-100: #e0eee2;
+  --ok-500: #4a7a54;
+  --ok-700: #325a3a;
+  --err-100: #f5e1dd;
+  --err-500: #b04a3b;
+  --err-700: #82352a;
+  --note-100: #f6ebdd;
+  --note-500: #9a5a22;
+  --note-700: #6e3f16;
+
+  /* ── 2. Semantics ──────────────────────────────────────────────── */
+  --color-bg-page: var(--n-50);
+  --color-bg-surface: var(--n-0);
+  --color-bg-subtle: var(--n-100);
+  --color-bg-hover: var(--n-200);
+  --color-bg-inverse: var(--n-900);
+  --color-bg-scrim: rgb(13 17 18 / 0.55);
+
+  --color-text: var(--n-900);
+  --color-text-secondary: var(--n-600);
+  --color-text-muted: var(--n-500);
+  --color-text-inverse: var(--n-50);
+  --color-text-on-accent: #ffffff;
+  /* The logo's own blue; nothing else uses it. */
+  --color-brand: #00167a;
+
+  --color-border-subtle: var(--n-200);
+  --color-border: var(--n-300);
+  --color-border-strong: var(--n-400);
+  --color-separator: var(--n-200);
+  --color-focus: var(--a-500);
+
+  --color-accent-subtle: var(--a-100);
+  --color-accent-border: var(--a-300);
+  --color-accent-solid: var(--a-500);
+  --color-accent-solid-hover: var(--a-600);
+  --color-accent-text: var(--a-700);
+
+  --color-ok-subtle: var(--ok-100);
+  --color-ok-solid: var(--ok-500);
+  --color-ok-text: var(--ok-700);
+  --color-err-subtle: var(--err-100);
+  --color-err-solid: var(--err-500);
+  --color-err-text: var(--err-700);
+  --color-note-subtle: var(--note-100);
+  --color-note-solid: var(--note-500);
+  --color-note-text: var(--note-700);
+
+  /* Per-track accents — the three curriculum tracks keep a colour each so
+     a lesson card, pill and menu entry read as the same track. */
+  --track-foundations: #2f4a52;
+  --track-diagnostics: #4c5a3c;
+  --track-practice: #7a4a38;
+
+  /* ── Type ──────────────────────────────────────────────────────── */
+  /* Latin faces are webfonts; Japanese falls back to the system faces
+     (no Japanese webfont, by decision). Serif carries headings only. */
+  --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, "Hiragino Mincho ProN",
+    "Yu Mincho", "Noto Serif JP", serif;
+  --font-sans: "Source Sans 3", system-ui, -apple-system, "Segoe UI", "Hiragino Sans",
+    "Yu Gothic UI", "Noto Sans JP", sans-serif;
+  --font-heading: var(--font-serif);
+  --font-body: var(--font-sans);
+
+  /* Role scale: size, line-height and weight are one decision per role. */
+  --text-display: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+  --lh-display: 1.08;
+  --text-title: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
+  --lh-title: 1.15;
+  --text-heading: 1.25rem;
+  --lh-heading: 1.3;
+  --text-subheading: 1.0625rem;
+  --lh-subheading: 1.4;
+  --text-body: 1rem;
+  --lh-body: 1.6;
+  --text-small: 0.875rem;
+  --lh-small: 1.5;
+  --text-caption: 0.8125rem;
+  --lh-caption: 1.45;
+  --tracking-display: -0.015em;
+
+  /* ── Spacing (8pt) ─────────────────────────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* Legacy spacing names, mapped onto the scale. */
+  --space-xs: var(--space-2);
+  --space-sm: var(--space-4);
+  --space-md: var(--space-6);
+  --space-lg: var(--space-10);
+  --space-xl: var(--space-16);
+
+  /* ── Layout ────────────────────────────────────────────────────── */
+  --content-max: 72rem;
+  --measure: 65ch;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --header-height: 3.5rem;
+
+  /* ── Shape ─────────────────────────────────────────────────────── */
+  --radius-1: 4px;
+  --radius-2: 8px;
+  --radius-3: 12px;
+  --radius-pill: 999px;
+
+  /* ── Elevation: a 1px ring plus two soft layers (07 surfaces.md) ─── */
+  --shadow-border: 0 0 0 1px rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06),
+    0 2px 4px 0 rgb(0 0 0 / 0.04);
+  --shadow-border-hover: 0 0 0 1px rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08),
+    0 2px 4px 0 rgb(0 0 0 / 0.06);
+  --shadow-raised: 0 0 0 1px rgb(0 0 0 / 0.06), 0 4px 8px -2px rgb(0 0 0 / 0.08),
+    0 12px 24px -8px rgb(0 0 0 / 0.1);
+  --shadow-overlay: 0 0 0 1px rgb(0 0 0 / 0.06), 0 12px 32px -8px rgb(0 0 0 / 0.22),
+    0 24px 48px -16px rgb(0 0 0 / 0.18);
+  --image-outline: 1px solid rgb(0 0 0 / 0.1);
+
+  /* ── Motion ────────────────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 300ms;
+
+  /* ── Legacy aliases (pages not yet renovated) ──────────────────── */
+  --bg: var(--color-bg-page);
+  --text: var(--color-text);
+  --accent: var(--color-text-secondary);
+  --accent-rgb: 86, 98, 101;
+  --correct: var(--color-ok-solid);
+  --correct-rgb: 74, 122, 84;
+  --incorrect: var(--color-err-solid);
+  --incorrect-rgb: 176, 74, 59;
+  --seal: var(--color-note-solid);
+}
+
+/* Dark: the same system on an ink ground, not a second design. Vividness
+   comes down, the dark end spreads out, every pair re-measured. */
+:root[data-theme='dark'] {
+  --color-brand: var(--color-text);
+  color-scheme: dark;
+
+  --color-bg-page: #121617;
+  --color-bg-surface: #191f21;
+  --color-bg-subtle: #1f2628;
+  --color-bg-hover: #273032;
+  --color-bg-inverse: #eef1f0;
+  --color-bg-scrim: rgb(0 0 0 / 0.6);
+
+  --color-text: #e8ecea;
+  --color-text-secondary: #a4aeae;
+  --color-text-muted: #8a9595;
+  --color-text-inverse: #161c1e;
+  --color-text-on-accent: #ffffff;
+
+  --color-border-subtle: #263032;
+  --color-border: #34403f;
+  --color-border-strong: #5b6b6e;
+  --color-separator: #263032;
+  --color-focus: #8fbccb;
+
+  --color-accent-subtle: #1a2f38;
+  --color-accent-border: #35606f;
+  --color-accent-solid: #3a7a90;
+  --color-accent-solid-hover: #4a8ba1;
+  --color-accent-text: #8fbccb;
+
+  --color-ok-subtle: #1c2e20;
+  --color-ok-solid: #6a9e74;
+  --color-ok-text: #a9d2b0;
+  --color-err-subtle: #33201c;
+  --color-err-solid: #d0705e;
+  --color-err-text: #e9a596;
+  --color-note-subtle: #33261a;
+  --color-note-solid: #c8823f;
+  --color-note-text: #e6b481;
+
+  --track-foundations: #3d6069;
+  --track-diagnostics: #61724d;
+  --track-practice: #9a5f49;
+
+  --shadow-border: 0 0 0 1px rgb(255 255 255 / 0.08);
+  --shadow-border-hover: 0 0 0 1px rgb(255 255 255 / 0.13);
+  --shadow-raised: 0 0 0 1px rgb(255 255 255 / 0.1), 0 8px 24px -8px rgb(0 0 0 / 0.5);
+  --shadow-overlay: 0 0 0 1px rgb(255 255 255 / 0.1), 0 16px 40px -8px rgb(0 0 0 / 0.6);
+  --image-outline: 1px solid rgb(255 255 255 / 0.1);
+
+  --accent-rgb: 164, 174, 174;
+  --correct-rgb: 106, 158, 116;
+  --incorrect-rgb: 208, 112, 94;
+}
+
+/* Japanese text needs taller lines; the html lang attribute follows the UI
+   language (LanguageContext). */
+:root[lang='ja'] {
+  --lh-body: 1.8;
+  --lh-small: 1.7;
+  --lh-caption: 1.6;
+  --lh-heading: 1.4;
+  --lh-title: 1.3;
+  --lh-display: 1.2;
+  --tracking-display: 0;
+}
+
+/* Tighter rhythm on narrow screens; the two largest legacy steps cascade
+   to every page's side padding and section spacing. */
+@media (max-width: 48em) {
+  :root {
+    --space-lg: 1.75rem;
+    --space-xl: 2.75rem;
+  }
+}
+
+/* ── Element defaults ──────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+::selection {
+  background: var(--a-200);
+  color: var(--n-900);
+}
+
+:root[data-theme='dark'] ::selection {
+  background: var(--a-700);
+  color: var(--n-50);
+}
+
+body {
+  background-color: var(--color-bg-page);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+}
+
+/* Controls never zoom the page on iOS (16px floor) and answer the first
+   tap without the double-tap delay. Labels are content; controls are not. */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: max(1rem, 1em);
+  accent-color: var(--color-accent-solid);
+}
+
+button,
+a,
+[role='button'] {
+  touch-action: manipulation;
+}
+
+button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* One visible focus indicator everywhere, drawn by the browser's keyboard
+   heuristics, verified against page, surface and accent backgrounds. */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline-offset: 1px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+p {
+  overflow-wrap: anywhere;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-accent-text);
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.15em;
+}

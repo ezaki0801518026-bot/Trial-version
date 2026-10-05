@@ -1,0 +1,87 @@
+/* Shared by the Study Tour and Cohort concept pages. */
+.page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: var(--space-10) var(--gutter) var(--space-16);
+}
+
+.intro {
+  max-width: 44rem;
+  margin-bottom: var(--space-10);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-title);
+  line-height: var(--lh-title);
+  font-weight: 600;
+  margin: 0 0 var(--space-3);
+}
+
+.lede {
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.mapLink {
+  display: inline-block;
+  margin-top: var(--space-4);
+  font-size: var(--text-body);
+}
+
+.subheading {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading);
+  line-height: var(--lh-heading);
+  font-weight: 600;
+  margin: 0 0 var(--space-4);
+}
+
+.pointGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.pointCard {
+  padding: var(--space-5);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-border);
+}
+
+.pointTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-subheading);
+  line-height: var(--lh-subheading);
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+}
+
+.pointDesc {
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.status {
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4);
+}
+
+@media (max-width: 36em) {
+  .page {
+    padding-top: var(--space-8);
+  }
+
+  .pointGrid {
+    grid-template-columns: 1fr;
+  }
+}

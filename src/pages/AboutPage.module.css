@@ -1,0 +1,798 @@
+/* Wider than the reading pages so the photo grids, timeline and member
+   cards get the room the full-width hero sets up. Paragraphs are NOT
+   widened with it — they keep their own measure. */
+.page {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-10) var(--gutter) var(--space-16);
+}
+
+.track_foundations {
+  --track-color: var(--track-foundations);
+}
+.track_diagnostics {
+  --track-color: var(--track-diagnostics);
+}
+.track_practice {
+  --track-color: var(--track-practice);
+}
+
+/* Hero ------------------------------------------------------------- */
+/* The words sit BESIDE the photo, never over it: a tall photo column keeps
+   the group in frame at every window shape (a letterboxed banner cropped
+   the staircase vertically). On narrow screens the photo is shown at its
+   native 4:3, so nothing is cropped at all. */
+.hero {
+  background: var(--n-900);
+  color: var(--n-50);
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-10) var(--gutter) var(--space-12);
+}
+
+.heroFigure {
+  margin: 0;
+  min-width: 0;
+}
+
+.heroImg {
+  display: block;
+  width: 100%;
+  /* Subjects sit a little left of centre, so hold the horizontal crop there. */
+  object-position: 46% center;
+}
+
+@media (max-width: 56em) {
+  .heroFigure {
+    order: -1;
+  }
+
+  .heroImg {
+    aspect-ratio: 4 / 3;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .heroText {
+    padding: var(--space-8) var(--gutter) var(--space-10);
+  }
+}
+
+@media (min-width: 56em) {
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+    align-items: stretch;
+    min-height: clamp(24rem, 72vh, 42rem);
+  }
+
+  .heroText {
+    padding-left: max(var(--gutter), calc((100vw - 90rem) / 2 + var(--gutter)));
+  }
+
+  .heroImg {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.heroEyebrow {
+  font-size: var(--text-small);
+  color: var(--n-300);
+  margin: 0 0 var(--space-3);
+}
+
+.heroHeadline {
+  font-family: var(--font-heading);
+  font-size: var(--text-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 600;
+  white-space: pre-line;
+  color: var(--n-50);
+  margin: 0 0 var(--space-5);
+}
+
+.heroLede {
+  font-size: var(--text-body);
+  line-height: 1.8;
+  white-space: pre-line;
+  color: var(--n-200);
+  max-width: 34rem;
+  margin: 0;
+}
+
+/* Section pager ---------------------------------------------------- */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: var(--space-4);
+  margin-top: var(--space-16);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-separator);
+}
+
+.pagerLink {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  width: auto;
+  min-height: 2.75rem;
+  padding: var(--space-4) var(--space-5);
+}
+
+.pagerNext {
+  text-align: right;
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.pagerDir {
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+}
+
+.pagerName {
+  font-family: var(--font-heading);
+  font-size: var(--text-subheading);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Tab bar ---------------------------------------------------------- */
+.tabBar {
+  display: flex;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--color-separator);
+  margin-bottom: var(--space-12);
+  overflow-x: auto;
+  scroll-margin-top: var(--header-height);
+}
+
+.tab {
+  flex-shrink: 0;
+  min-height: 2.75rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  box-shadow: inset 0 -2px 0 transparent;
+  padding: 0 var(--space-3);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tab:hover {
+    color: var(--color-text);
+  }
+}
+
+.tabActive {
+  color: var(--color-text);
+  box-shadow: inset 0 -2px 0 var(--color-accent-solid);
+}
+
+.tabContent {
+  animation: tab-in var(--dur-base) ease both;
+}
+
+@keyframes tab-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Mission ---------------------------------------------------------- */
+.missionCard {
+  background: var(--color-accent-subtle);
+  color: var(--color-text);
+  border-radius: var(--radius-3);
+  padding: var(--space-8);
+  margin-bottom: var(--space-16);
+}
+
+.missionLabel {
+  font-size: var(--text-small);
+  color: var(--color-accent-text);
+  margin: 0 0 var(--space-2);
+}
+
+.missionText {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading);
+  line-height: 1.6;
+  font-weight: 500;
+  margin: 0;
+  max-width: 46rem;
+  text-wrap: pretty;
+}
+
+/* Generic section -------------------------------------------------- */
+.section {
+  margin-bottom: var(--space-16);
+}
+
+.sectionEyebrow {
+  font-size: var(--text-small);
+  font-weight: 500;
+  margin: 0 0 var(--space-2);
+}
+
+.eyebrowFoundations {
+  color: var(--track-foundations);
+}
+.eyebrowDiagnostics {
+  color: var(--track-diagnostics);
+}
+.eyebrowPractice {
+  color: var(--track-practice);
+}
+
+:global(:root[data-theme='dark']) .eyebrowFoundations,
+:global(:root[data-theme='dark']) .eyebrowDiagnostics,
+:global(:root[data-theme='dark']) .eyebrowPractice {
+  color: var(--color-text-secondary);
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-title);
+  line-height: var(--lh-title);
+  font-weight: 600;
+  margin: 0 0 var(--space-4);
+  max-width: 34rem;
+}
+
+.sectionBody {
+  font-size: var(--text-body);
+  line-height: 1.8;
+  white-space: pre-line;
+  color: var(--color-text);
+  max-width: 38rem;
+  margin: 0 0 var(--space-5);
+  text-wrap: pretty;
+}
+
+/* Text + image split ---------------------------------------------- */
+.splitBlock {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: var(--space-8);
+}
+
+@media (min-width: 45em) {
+  .splitBlock {
+    grid-template-columns: 1fr 0.85fr;
+  }
+  .splitReverse .splitText {
+    order: 2;
+  }
+  .splitReverse .splitFigure {
+    order: 1;
+  }
+}
+
+.splitText {
+  min-width: 0;
+}
+
+.splitFigure {
+  margin: 0;
+}
+
+.splitImg {
+  width: 100%;
+  max-height: 16rem;
+  object-fit: cover;
+  border-radius: var(--radius-2);
+  outline: var(--image-outline);
+  outline-offset: -1px;
+  display: block;
+}
+
+.splitImgTall {
+  max-height: 22rem;
+}
+
+.wideFigure {
+  margin: var(--space-6) 0 0;
+}
+
+.wideImg {
+  width: 100%;
+  max-height: 15rem;
+  object-fit: cover;
+  border-radius: var(--radius-2);
+  outline: var(--image-outline);
+  outline-offset: -1px;
+  display: block;
+}
+
+/* Stats ----------------------------------------------------------- */
+.statRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.bigStat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border-radius: var(--radius-2);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-border);
+}
+
+.bigStatValue {
+  font-family: var(--font-heading);
+  font-size: var(--text-display);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--track-color);
+}
+
+.bigStatLabel {
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+}
+
+/* Quote block ----------------------------------------------------- */
+.quote {
+  margin: var(--space-8) 0;
+  padding: 0;
+  max-width: 38rem;
+}
+
+.quoteText {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading);
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--color-accent-text);
+  margin: 0 0 var(--space-3);
+  text-wrap: balance;
+}
+
+.quoteAttr {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  font-style: normal;
+  display: block;
+}
+
+/* Insight properties ----------------------------------------------- */
+.propGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.propCard {
+  padding: var(--space-5);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-border);
+}
+
+.propTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-subheading);
+  line-height: var(--lh-subheading);
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+}
+
+.propDesc {
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Solution / findings: the argument's own blocks, on the subtle ground. */
+.solutionSection,
+.findingsSection {
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-3);
+  padding: var(--space-8);
+}
+
+/* Process video --------------------------------------------------- */
+.videoFigure {
+  margin: 0;
+}
+
+.videoCaption {
+  font-size: var(--text-caption);
+  line-height: var(--lh-caption);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-3);
+  max-width: 40rem;
+}
+
+/* Timeline -------------------------------------------------------- */
+.timeline {
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.35rem;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 2px;
+  background: var(--color-border-subtle);
+}
+
+.timelineItem {
+  position: relative;
+  padding-bottom: var(--space-10);
+}
+
+.timelineItem:last-child {
+  padding-bottom: 0;
+}
+
+.timelineDot {
+  position: absolute;
+  left: calc(-1 * var(--space-6) + 0.1rem);
+  top: 0.4rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  background: var(--color-accent-solid);
+  border-radius: 50%;
+}
+
+.timelineDate {
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-1);
+}
+
+.timelineTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-subheading);
+  line-height: var(--lh-subheading);
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+}
+
+.timelineDesc {
+  font-size: var(--text-small);
+  line-height: 1.75;
+  color: var(--color-text);
+  margin: 0;
+  max-width: 36rem;
+  text-wrap: pretty;
+}
+
+.timelineLink {
+  display: inline-block;
+  font-size: var(--text-small);
+  color: var(--color-accent-text);
+  margin-top: var(--space-2);
+}
+
+.timelinePhotos {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  max-width: 46rem;
+}
+
+.timelinePhoto {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 11rem;
+  object-fit: cover;
+  border-radius: var(--radius-2);
+  outline: var(--image-outline);
+  outline-offset: -1px;
+  display: block;
+}
+
+.timelinePhotoPortrait {
+  flex: 0 0 auto;
+  width: auto;
+  height: 16rem;
+  object-fit: contain;
+}
+
+@media (max-width: 36em) {
+  .timelinePhotos {
+    flex-direction: column;
+  }
+
+  .timelinePhoto {
+    width: 100%;
+    height: 10rem;
+  }
+
+  .timelinePhotoPortrait {
+    width: auto;
+    max-width: 100%;
+    height: 14rem;
+    align-self: flex-start;
+  }
+}
+
+/* Track record ----------------------------------------------------- */
+.recordGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.recordTile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-border);
+}
+
+.recordValue {
+  font-family: var(--font-heading);
+  font-size: var(--text-title);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.recordLabel {
+  font-size: var(--text-caption);
+  line-height: var(--lh-caption);
+  color: var(--color-text-secondary);
+}
+
+/* Field-notes gallery ---------------------------------------------- */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.galleryFigure {
+  margin: 0;
+}
+
+.galleryImg {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-2);
+  outline: var(--image-outline);
+  outline-offset: -1px;
+  display: block;
+}
+
+.galleryCaption {
+  font-size: var(--text-caption);
+  line-height: var(--lh-caption);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-2);
+}
+
+/* Team ------------------------------------------------------------- */
+.teamFigure {
+  margin: 0 0 var(--space-12);
+}
+
+.teamPhoto {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center 38%;
+  border-radius: var(--radius-3);
+  outline: var(--image-outline);
+  outline-offset: -1px;
+  display: block;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+/* Portrait column sized to the source crops (245px square). */
+.memberCard {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: var(--space-5);
+  padding: var(--space-5);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-border);
+}
+
+.avatarPhoto {
+  width: 7rem;
+  height: 7rem;
+  border-radius: var(--radius-2);
+  object-fit: cover;
+  object-position: center 40%;
+  outline: var(--image-outline);
+  outline-offset: -1px;
+  display: block;
+}
+
+.memberInfo {
+  min-width: 0;
+}
+
+.memberName {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading);
+  line-height: var(--lh-heading);
+  font-weight: 600;
+  margin: 0;
+}
+
+.memberReading {
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-2);
+}
+
+.memberRole {
+  display: inline-block;
+  font-size: var(--text-caption);
+  line-height: 1.5;
+  color: var(--color-text-on-accent);
+  background: var(--track-color);
+  border-radius: var(--radius-pill);
+  padding: 0 var(--space-2);
+  margin: 0 0 var(--space-2);
+}
+
+.memberMajor {
+  font-size: var(--text-caption);
+  line-height: var(--lh-caption);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-2);
+}
+
+.memberBio {
+  font-size: var(--text-small);
+  line-height: 1.75;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.memberLinks {
+  display: flex;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 0;
+}
+
+.memberLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-subtle);
+  text-decoration: none;
+  transition:
+    color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .memberLink:hover {
+    color: var(--color-text);
+    background: var(--color-bg-hover);
+  }
+}
+
+/* Closing ---------------------------------------------------------- */
+.closing {
+  margin-top: var(--space-16);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-separator);
+}
+
+.closingText {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading);
+  line-height: 1.5;
+  font-weight: 500;
+  white-space: pre-line;
+  max-width: 34rem;
+  margin: 0 0 var(--space-6);
+}
+
+.closingMeta {
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.closingContact {
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  margin: var(--space-3) 0 0;
+}
+
+/* Widths ----------------------------------------------------------- */
+@media (max-width: 56em) {
+  .statRow,
+  .propGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .recordGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 40em) {
+  .page {
+    padding-top: var(--space-8);
+  }
+
+  .section {
+    margin-bottom: var(--space-12);
+  }
+
+  .teamGrid,
+  .galleryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .memberCard {
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .avatarPhoto {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .solutionSection,
+  .findingsSection,
+  .missionCard {
+    padding: var(--space-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabContent {
+    animation: none;
+  }
+}

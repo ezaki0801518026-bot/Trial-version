@@ -1,0 +1,21 @@
+/* Rides the very top edge of the window, above the sticky header. */
+.rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 200;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* scaleX from a left origin: the browser can keep this on the compositor,
+   so the bar tracks the scroll without touching layout. A scroll readout
+   must not lag the scroll, so there is no transition either. */
+.fill {
+  height: 100%;
+  transform-origin: left center;
+  background: var(--color-accent-solid);
+  will-change: transform;
+}

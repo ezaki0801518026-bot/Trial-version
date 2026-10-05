@@ -1,0 +1,149 @@
+.popup {
+  position: fixed;
+  right: calc(var(--space-4) + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  width: 20rem;
+  max-width: calc(100vw - 2 * var(--space-4));
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-2);
+  padding: var(--space-5);
+  padding-right: calc(var(--space-5) + 1.5rem);
+  box-shadow: var(--shadow-overlay);
+  animation: survey-in var(--dur-slow) var(--ease-out) both;
+}
+
+@keyframes survey-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.dismissButton {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-1);
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dismissButton:hover {
+    color: var(--color-text);
+    background: var(--color-bg-subtle);
+  }
+}
+
+.headline {
+  font-family: var(--font-heading);
+  font-size: var(--text-subheading);
+  line-height: var(--lh-subheading);
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+}
+
+.body {
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-size: var(--text-caption);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.select,
+.textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-text);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  padding: var(--space-2) var(--space-3);
+  min-height: 2.5rem;
+}
+
+.textarea {
+  resize: vertical;
+  margin-bottom: var(--space-2);
+}
+
+.ctaButton {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--color-text);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  padding: 0 var(--space-4);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ctaButton:hover:not(:disabled) {
+    background: var(--color-bg-hover);
+    border-color: var(--color-border-strong);
+  }
+}
+
+.ctaButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.resultText {
+  font-size: var(--text-small);
+  margin: 0;
+}
+
+.resultTextError {
+  font-size: var(--text-small);
+  color: var(--color-err-text);
+  margin: 0 0 var(--space-3);
+}
+
+@media (max-width: 30em) {
+  .popup {
+    left: var(--space-4);
+    right: var(--space-4);
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popup {
+    animation-name: survey-fade;
+  }
+}
+
+@keyframes survey-fade {
+  from {
+    opacity: 0;
+  }
+}

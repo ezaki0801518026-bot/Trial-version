@@ -1,0 +1,65 @@
+/* Design tokens and element resets live in src/tokens.css, shared classes in
+   src/ui.css — both imported by each entry's bootstrap file, never from a
+   CSS module (see the note at the top of tokens.css). This module holds
+   only the app-shell classes. */
+
+.app {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-page);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+/* Set while a breadcrumb row renders, so fixed-viewport layouts (the
+   lesson screen) can subtract its height. Matches .crumbs in
+   Breadcrumbs.module.css. */
+.withCrumbs {
+  --crumb-height: 2.25rem;
+}
+
+.main {
+  flex: 1 0 auto;
+  min-height: calc(100svh - var(--header-height));
+}
+
+.main:focus {
+  outline: none;
+}
+
+/* Route changes are the most frequent thing a visitor does here, so the
+   swap is instant: no enter animation (05 animate, frequency gate). */
+.pageEnter {
+  display: contents;
+}
+
+.skipLink {
+  position: absolute;
+  top: -3rem;
+  left: var(--gutter);
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  color: var(--color-text-on-accent);
+  background: var(--color-accent-solid);
+  border-radius: 0 0 var(--radius-1) var(--radius-1);
+  font-size: var(--text-small);
+  text-decoration: none;
+  transition: top var(--dur-fast) var(--ease-out);
+}
+
+.skipLink:focus {
+  top: 0;
+}
+
+.notFound {
+  padding: var(--space-16) var(--gutter);
+  text-align: center;
+}
+
+.notFoundText {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading);
+  line-height: var(--lh-heading);
+  margin: 0 0 var(--space-6);
+}

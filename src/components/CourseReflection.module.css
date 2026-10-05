@@ -1,0 +1,216 @@
+/* ── Closed: a quiet way in ─────────────────────────── */
+.entry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-2);
+}
+
+.entryTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-subheading);
+  line-height: var(--lh-subheading);
+  font-weight: 600;
+  margin: 0 0 var(--space-1);
+}
+
+.entryText {
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ── Open panel ─────────────────────────────────────── */
+.panel {
+  margin-top: var(--space-8);
+  padding: var(--space-6);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-border);
+  scroll-margin-top: calc(var(--header-height, 4rem) + 1rem);
+}
+
+.eyebrow {
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-3);
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  list-style: none;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+}
+
+.stepDot {
+  font-size: var(--text-caption);
+  line-height: 1.4;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+}
+
+.stepDot[aria-current='step'] {
+  background: var(--color-accent-solid);
+  color: var(--color-text-on-accent);
+}
+
+.keyword {
+  display: inline-block;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--color-accent-text);
+  margin: 0 0 var(--space-2);
+}
+
+.question {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading);
+  line-height: var(--lh-heading);
+  font-weight: 600;
+  margin: 0 0 var(--space-4);
+  outline: none;
+}
+
+.options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.option {
+  width: 100%;
+  min-height: 2.75rem;
+  text-align: left;
+  font: inherit;
+  font-size: var(--text-body);
+  line-height: var(--lh-small);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .option:hover:not(:disabled) {
+    border-color: var(--color-border-strong);
+  }
+}
+
+.option:disabled {
+  cursor: default;
+}
+
+/* Deliberately muted: the lecture's answer is marked, the viewer's own pick
+   is outlined, and nothing turns red. */
+.optionCorrect {
+  border-color: var(--color-ok-solid);
+  background: var(--color-ok-subtle);
+  font-weight: 500;
+}
+
+.optionChosen {
+  border-color: var(--color-border-strong);
+  border-style: dashed;
+}
+
+.optionDim {
+  opacity: 0.55;
+}
+
+.mark {
+  margin-right: var(--space-2);
+  color: var(--color-ok-text);
+}
+
+.feedback {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-1);
+}
+
+.feedbackLead {
+  font-size: var(--text-small);
+  font-weight: 600;
+  margin: 0 0 var(--space-1);
+}
+
+.explanation {
+  font-size: var(--text-small);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.rewatch {
+  margin-top: var(--space-3);
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+/* ── Your view ──────────────────────────────────────── */
+.hint {
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+  margin: calc(-1 * var(--space-2)) 0 var(--space-4);
+}
+
+.label {
+  display: block;
+  font-size: var(--text-small);
+  font-weight: 500;
+  margin: var(--space-4) 0 var(--space-1);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0 var(--space-4);
+}
+
+.field {
+  min-width: 0;
+}
+
+.note {
+  font-size: var(--text-caption);
+  line-height: var(--lh-caption);
+  color: var(--color-text-secondary);
+  margin: var(--space-2) 0 0;
+}
+
+.privacy {
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+  margin: var(--space-3) 0 0;
+  text-align: right;
+}
+
+.sent .question {
+  margin-bottom: var(--space-2);
+}

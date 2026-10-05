@@ -1,0 +1,203 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.25rem;
+  min-width: 2.25rem;
+  padding: 0 var(--space-2);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.trigger:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .trigger:hover {
+    color: var(--color-text);
+    background: var(--color-bg-subtle);
+  }
+}
+
+/* Shortcut hint — the "/" and Ctrl-K shortcuts exist, but nobody finds an
+   invisible shortcut. Hidden on touch-first (narrow) viewports. */
+.kbdHint {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  padding: 0.1rem 0.35rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media (max-width: 48em) {
+  .kbdHint {
+    display: none;
+  }
+
+  .trigger {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--color-bg-scrim);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 8vh var(--space-4) var(--space-4);
+  animation: search-backdrop-in var(--dur-base) ease both;
+}
+
+.panel {
+  width: 100%;
+  max-width: 36rem;
+  max-height: 76svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-overlay);
+  overflow: hidden;
+  transform-origin: top center;
+  animation: search-panel-in var(--dur-base) var(--ease-out) both;
+}
+
+@keyframes search-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes search-panel-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-separator);
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-text);
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.closeButton {
+  flex-shrink: 0;
+  min-height: 2rem;
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-1);
+  padding: 0 var(--space-2);
+  cursor: pointer;
+}
+
+.results {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-2);
+}
+
+.message {
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+  margin: var(--space-4);
+}
+
+.group {
+  margin-bottom: var(--space-2);
+}
+
+.groupLabel {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin: var(--space-3) var(--space-3) var(--space-1);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.result {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 2.75rem;
+  text-align: left;
+  font-family: var(--font-body);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-1);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+}
+
+.resultActive {
+  background: var(--color-bg-subtle);
+}
+
+.resultTitle {
+  font-size: var(--text-body);
+  color: var(--color-text);
+}
+
+.resultSubtitle {
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation-name: search-backdrop-in;
+  }
+}

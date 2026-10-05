@@ -1,0 +1,522 @@
+.page {
+  padding-bottom: var(--space-8);
+}
+
+/* ── Hero ───────────────────────────────────────────── */
+/* A full screen, on purpose: the image and one sentence, with everything the
+   service offers below the fold. svh (not vh) so a phone's collapsing address
+   bar cannot leave the next section peeking in or push the text out of view.
+   The header is translucent and sits on top, so the hero starts at the very
+   top edge and the image shows through the bar. */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  margin-top: calc(-1 * var(--header-height));
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--n-800);
+  color: var(--n-50);
+}
+
+/* The photographs sit side by side in a strip that snaps one screen at a
+   time; a sideways swipe moves to the next. The words above never catch the
+   pointer, so a swipe anywhere on the screen reaches the strip. */
+.heroTrack {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.heroTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.heroImg {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  scroll-snap-align: start;
+}
+
+.heroImg:first-child {
+  animation: hero-image 1400ms var(--ease-out) both;
+}
+
+.heroVeil,
+.heroInner,
+.scrollCue,
+.heroDots,
+.heroCaption {
+  pointer-events: none;
+}
+
+/* One line about the photograph on screen, small, in the lower right corner. */
+.heroCaption {
+  position: absolute;
+  right: calc(var(--gutter) + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  margin: 0;
+  max-width: min(24rem, 55vw);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: right;
+  color: rgb(255 255 255 / 0.78);
+  text-wrap: pretty;
+  animation: hero-fade var(--dur-base) ease both;
+}
+
+/* On a phone the caption stays right of the scroll cue in the centre. */
+@media (max-width: 36em) {
+  .heroCaption {
+    max-width: calc(50vw - 2.5rem);
+  }
+}
+
+.heroDots {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--space-6) + 2rem + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-2);
+}
+
+.heroDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.45);
+  transition: background-color var(--dur-base) ease;
+}
+
+.heroDotActive {
+  background: rgb(255 255 255 / 0.95);
+}
+
+/* Text stays legible over any part of the photograph: a dark wash from
+   the bottom, measured against the lightest region of the image. */
+.heroVeil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(13 17 18 / 0.25) 0%,
+    rgb(13 17 18 / 0.05) 35%,
+    rgb(13 17 18 / 0.7) 100%
+  );
+}
+
+.heroInner {
+  position: relative;
+  padding-top: var(--space-16);
+  /* Room below the words for the dots, the scroll cue and the caption. */
+  padding-bottom: var(--space-20);
+  animation: hero-text 900ms var(--ease-out) 250ms both;
+}
+
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 600;
+  margin: 0 0 var(--space-4);
+  max-width: 24ch;
+  /* Two sentences, one per line (the break is in strings.js). */
+  white-space: pre-line;
+}
+
+.heroLede {
+  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.125rem);
+  line-height: var(--lh-body);
+  margin: 0;
+  max-width: 46ch;
+  /* The question and the answer are written as two lines in strings.js. */
+  white-space: pre-line;
+  color: var(--n-100);
+  text-wrap: pretty;
+}
+
+/* Japanese characters are about two ch wide: give the lede the same visual measure. */
+:global(:root[lang='ja']) .heroLede {
+  max-width: 33em;
+}
+
+/* The only hint that there is more, since the screen holds nothing else
+   to click. It does not move: a thing that bounces forever is a thing the
+   eye can never leave. */
+.scrollCue {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  color: rgb(255 255 255 / 0.8);
+  animation: hero-text 900ms var(--ease-out) 900ms both;
+}
+
+@keyframes hero-image {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes hero-text {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroImg,
+  .heroInner,
+  .scrollCue {
+    animation-name: hero-fade;
+    animation-duration: 500ms;
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* A quiet reminder for those who closed the five questions. */
+.remind {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.remindText {
+  margin: 0;
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+  max-width: 40rem;
+}
+
+.remindActions {
+  display: flex;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* ── Bands ──────────────────────────────────────────── */
+.band {
+  padding-top: var(--space-16);
+}
+
+.bandHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+}
+
+.bandTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-title);
+  line-height: var(--lh-title);
+  font-weight: 600;
+  margin: 0 0 var(--space-6);
+}
+
+.bandHead .bandTitle {
+  margin-bottom: 0;
+}
+
+/* ── Ask: the assistant and a person, side by side ──── */
+.askGrid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-4);
+  align-items: stretch;
+}
+
+.askCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+
+.askTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading);
+  line-height: var(--lh-heading);
+  font-weight: 600;
+  margin: 0;
+}
+
+.askRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* The heading already says what the box is for; the label is for screen
+   readers, which do not get to read the heading as the field's name. */
+.askInput {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.expertButton {
+  align-self: flex-start;
+}
+
+/* ── Four doors ─────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 64em) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tileImgWrap {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  line-height: 0;
+  background: var(--color-bg-subtle);
+}
+
+.tileImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tileBody {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.tileTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading);
+  line-height: var(--lh-heading);
+  font-weight: 600;
+}
+
+.soon {
+  font-size: var(--text-caption);
+  color: var(--color-note-text);
+}
+
+/* ── For you ────────────────────────────────────────── */
+.recRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.recCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.recText .recBody {
+  padding-top: var(--space-5);
+}
+
+.recThumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  line-height: 0;
+  background: var(--color-bg-subtle);
+}
+
+.recThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playGlyph {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.durBadge {
+  position: absolute;
+  right: var(--space-2);
+  bottom: var(--space-2);
+  background: rgb(13 17 18 / 0.72);
+  color: #fff;
+  font-size: var(--text-caption);
+  line-height: 1.5;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-1);
+}
+
+.recBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-4) var(--space-5);
+}
+
+.recKind {
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+}
+
+.recTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-subheading);
+  line-height: var(--lh-subheading);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.recWhy {
+  font-size: var(--text-caption);
+  line-height: var(--lh-caption);
+  color: var(--color-text-secondary);
+}
+
+.placeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+/* ── News ───────────────────────────────────────────── */
+.newsRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.newsCard {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  overflow: hidden;
+}
+
+.newsThumb {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  line-height: 0;
+  background: var(--color-bg-subtle);
+}
+
+.newsThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.newsBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+}
+
+.newsDate {
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+}
+
+.newsTitle {
+  font-size: var(--text-body);
+  line-height: var(--lh-small);
+  font-weight: 500;
+}
+
+/* ── Widths ─────────────────────────────────────────── */
+@media (max-width: 64em) {
+  .grid,
+  .recRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 48em) {
+  .band {
+    padding-top: var(--space-12);
+  }
+
+  .askGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .askCard {
+    padding: var(--space-5);
+  }
+
+  .newsRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 30em) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .tileBody {
+    padding: var(--space-3) var(--space-3) var(--space-4);
+  }
+
+  .tileTitle {
+    font-size: var(--text-subheading);
+  }
+
+  .recRow {
+    grid-template-columns: 1fr;
+  }
+
+  .newsCard {
+    grid-template-columns: 7rem 1fr;
+  }
+}
+
+/* Trial version: the reply to Ask. */
+.trialNote {
+  margin-top: var(--space-3);
+}

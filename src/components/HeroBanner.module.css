@@ -1,0 +1,100 @@
+/* A photograph across the page with the title on it. The photo is shown
+   as it is — no duotone, no filter — with a wash from the bottom so the
+   words stay readable over its lightest part. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--n-800);
+  color: var(--n-50);
+}
+
+.large {
+  width: 100%;
+  height: min(52vh, 28rem);
+}
+
+.small {
+  width: 100%;
+  height: 12rem;
+  margin: 0 0 var(--space-8);
+  border-radius: var(--radius-2);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0;
+  transition: opacity var(--dur-slow) ease;
+}
+
+.imageLoaded {
+  opacity: 1;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(13 17 18 / 0.1) 0%, rgb(13 17 18 / 0.05) 40%, rgb(13 17 18 / 0.72) 100%);
+}
+
+.content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-8) var(--gutter);
+}
+
+.small .content {
+  padding: var(--space-4) var(--space-5);
+}
+
+.eyebrow {
+  font-size: var(--text-small);
+  color: var(--n-200);
+  margin: 0 0 var(--space-1);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-display);
+  margin: 0;
+  color: var(--n-50);
+}
+
+.small .title {
+  font-size: var(--text-title);
+  line-height: var(--lh-title);
+}
+
+.subtitle {
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  margin: var(--space-2) 0 0;
+  color: var(--n-200);
+}
+
+@media (max-width: 48em) {
+  .large {
+    height: min(44vh, 22rem);
+  }
+
+  .content {
+    padding-bottom: var(--space-6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition: none;
+  }
+}

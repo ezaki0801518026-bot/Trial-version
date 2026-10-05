@@ -1,0 +1,49 @@
+.button {
+  position: fixed;
+  right: calc(var(--space-4) + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  z-index: 30;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  background: var(--color-bg-surface);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--shadow-raised);
+  animation: back-to-top-in var(--dur-base) var(--ease-out) both;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) ease;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+@keyframes back-to-top-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    animation-name: back-to-top-fade;
+    transition: none;
+  }
+
+  .button:active {
+    transform: none;
+  }
+}
+
+@keyframes back-to-top-fade {
+  from {
+    opacity: 0;
+  }
+}
