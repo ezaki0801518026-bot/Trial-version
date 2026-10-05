@@ -187,6 +187,7 @@ function App() {
       content = (
         <div className={`container ${styles.trialLesson}`}>
           <h1 className={styles.trialLessonTitle}>{lockedSection.title}</h1>
+          {lockedSection.description && <p className={styles.trialLessonLede}>{lockedSection.description}</p>}
           <TrialLock>{content}</TrialLock>
         </div>
       )

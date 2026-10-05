@@ -7,7 +7,7 @@
 }
 
 .content {
-  filter: blur(10px);
+  filter: blur(4px);
   user-select: none;
   pointer-events: none;
   mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);

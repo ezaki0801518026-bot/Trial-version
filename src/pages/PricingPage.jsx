@@ -51,12 +51,12 @@ function PricingPage({ navigate }) {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>{t('pricingTitle')}</h1>
-      <TrialLock>
       <PrototypeNotice messageKey="prototypeNoticePricing" />
       <div className={styles.intro}>
+        <h1 className={styles.title}>{t('pricingTitle')}</h1>
         <p className={styles.description}>{t('pricingDescription')}</p>
       </div>
+      <TrialLock>
 
       <div className={styles.tierList}>
         {tiers.map(({ key, featured, features, cta }) => (

@@ -35,15 +35,15 @@ function GlossaryPage({ navigate }) {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>{t('glossaryTitle')}</h1>
-      <TrialLock>
       <PrototypeNotice messageKey="prototypeNoticeGeneral" />
       <div className={styles.intro}>
+        <h1 className={styles.title}>{t('glossaryTitle')}</h1>
         <p className={styles.description}>{t('glossaryDescription')}</p>
         <button type="button" className="btn btn-secondary" onClick={() => navigate('/washi-map')}>
           {t('washiMapFromGlossary')}
         </button>
       </div>
+      <TrialLock>
 
       <label className="sr-only" htmlFor="glossary-search">
         {t('glossarySearchLabel')}

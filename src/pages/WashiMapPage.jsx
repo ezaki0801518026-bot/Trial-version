@@ -182,10 +182,9 @@ function WashiMapPage() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>{t('washiMapTitle')}</h1>
-      <TrialLock>
       <PrototypeNotice messageKey="prototypeNoticeGeneral" />
       <div className={styles.intro}>
+        <h1 className={styles.title}>{t('washiMapTitle')}</h1>
         <p className={styles.description}>{t('washiMapIntro')}</p>
         <div className={styles.desigLegend} aria-label={t('washiMapDesignationHeading')}>
           {designations.map((dsg) => (
@@ -195,6 +194,7 @@ function WashiMapPage() {
           ))}
         </div>
       </div>
+      <TrialLock>
 
       <div className={styles.mapLayout}>
         <figure className={styles.figure}>

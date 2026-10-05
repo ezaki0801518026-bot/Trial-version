@@ -15,15 +15,15 @@ function TourPage({ navigate }) {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>{t('tourTitle')}</h1>
-      <TrialLock>
       <PrototypeNotice messageKey="prototypeNoticeTour" />
       <div className={styles.intro}>
+        <h1 className={styles.title}>{t('tourTitle')}</h1>
         <p className={styles.lede}>{t('tourLede')}</p>
         <button type="button" className={`link ${styles.mapLink}`} onClick={() => navigate('/washi-map')}>
           {t('tourMapLink')}
         </button>
       </div>
+      <TrialLock>
 
       <h2 className={styles.subheading}>{t('tourWhatTitle')}</h2>
       <div className={styles.pointGrid}>

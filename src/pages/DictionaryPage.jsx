@@ -1,5 +1,6 @@
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { useTheme } from '../context/ThemeContext.jsx'
+import HelpTip from '../components/HelpTip.jsx'
 import PrototypeNotice from '../components/PrototypeNotice.jsx'
 import { DICTIONARY } from '../config/dictionary.js'
 import { asset } from '../utils/asset.js'
@@ -16,12 +17,15 @@ function DictionaryPage({ navigate }) {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>{t('dictionaryTitle')}</h1>
-      <TrialLock>
       <PrototypeNotice messageKey="prototypeNoticeGeneral" />
       <div className={styles.intro}>
+        <h1 className={styles.title}>
+          {t('dictionaryTitle')}
+          <HelpTip label={t('dictionaryHelpLabel')}>{t('dictionaryHelp')}</HelpTip>
+        </h1>
         <p className={styles.description}>{t('dictionaryLede')}</p>
       </div>
+      <TrialLock>
 
       {DICTIONARY.ready ? (
         <div className={`card ${styles.frame}`}>

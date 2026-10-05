@@ -467,12 +467,13 @@ function ChatPage() {
 
   return (
     <div className={styles.page}>
-      <h1 className={styles.title}>{t('chatTitle')}</h1>
-      <TrialLock>
       <PrototypeNotice messageKey="prototypeNoticeGeneral" />
       <div className={styles.intro}>
-        <p className={styles.description}>{hasAssistant ? t('chatIntroAi') : t('chatIntro')}</p>
+        <h1 className={styles.title}>{t('chatTitle')}</h1>
+        {/* Trial: the assistant is off, but the page still says what it does. */}
+        <p className={styles.description}>{t('chatIntroAi')}</p>
       </div>
+      <TrialLock>
 
       {(turns.length > 0 || phase === 'sending') && (
         <div className={styles.thread}>
