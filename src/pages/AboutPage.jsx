@@ -5,6 +5,7 @@ import VideoEmbed from '../components/VideoEmbed.jsx'
 import Reveal from '../components/Reveal.jsx'
 import ContactEmail from '../components/ContactEmail.jsx'
 import SocialIcon, { socialLabel } from '../components/SocialIcon.jsx'
+import EarlyAccessLink from '../components/EarlyAccessLink.jsx'
 import styles from './AboutPage.module.css'
 import { picture } from '../utils/asset.js'
 
@@ -576,6 +577,13 @@ function AboutPage({ initialTab = 'mission', onTabChange }) {
           </button>
         )}
       </nav>
+
+      {/* Trial version: one way onto the early access list, at the very end
+          (shared by the in-app About and the standalone /about/ page). */}
+      <section className={styles.earlyAccess}>
+        <p className={styles.earlyAccessLine}>{t('earlyAccessAboutLine')}</p>
+        <EarlyAccessLink from="about" />
+      </section>
       </div>
     </>
   )

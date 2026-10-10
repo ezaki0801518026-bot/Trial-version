@@ -43,7 +43,7 @@ function GlossaryPage({ navigate }) {
           {t('washiMapFromGlossary')}
         </button>
       </div>
-      <TrialLock>
+      <TrialLock from="glossary">
 
       <label className="sr-only" htmlFor="glossary-search">
         {t('glossarySearchLabel')}

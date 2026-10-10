@@ -194,7 +194,7 @@ function WashiMapPage() {
           ))}
         </div>
       </div>
-      <TrialLock>
+      <TrialLock from="washimap">
 
       <div className={styles.mapLayout}>
         <figure className={styles.figure}>

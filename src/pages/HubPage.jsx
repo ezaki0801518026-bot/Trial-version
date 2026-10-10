@@ -7,6 +7,7 @@ import { useProfile } from '../context/ProfileContext.jsx'
 import { getProgress } from '../utils/progress.js'
 import { recommend } from '../utils/recommend.js'
 import { picture } from '../utils/asset.js'
+import EarlyAccessLink from '../components/EarlyAccessLink.jsx'
 import styles from './HubPage.module.css'
 
 // The first screen is the image and the sentence, nothing else: what this is,
@@ -149,6 +150,13 @@ function HubPage({ navigate }) {
             ))}
           </div>
         )}
+      </section>
+
+      {/* Trial version: the way onto the early access list, right under the
+          hero. */}
+      <section className={`container ${styles.earlyAccess}`}>
+        <p className={styles.earlyAccessLine}>{t('earlyAccessHeroLine')}</p>
+        <EarlyAccessLink from="hero" />
       </section>
 
       {/* Two ways to ask, side by side: the assistant, and a person. */}

@@ -796,3 +796,21 @@
     animation: none;
   }
 }
+
+/* Trial version: early access list */
+.earlyAccess {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3) var(--space-6);
+  padding-block: var(--space-8);
+  text-align: center;
+}
+
+.earlyAccessLine {
+  margin: 0;
+  max-width: 40rem;
+  font-weight: 500;
+  text-wrap: balance;
+}

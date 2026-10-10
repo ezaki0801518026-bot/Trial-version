@@ -473,7 +473,7 @@ function ChatPage() {
         {/* Trial: the assistant is off, but the page still says what it does. */}
         <p className={styles.description}>{t('chatIntroAi')}</p>
       </div>
-      <TrialLock>
+      <TrialLock from="chat">
 
       {(turns.length > 0 || phase === 'sending') && (
         <div className={styles.thread}>

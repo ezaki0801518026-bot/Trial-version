@@ -25,7 +25,7 @@ function DictionaryPage({ navigate }) {
         </h1>
         <p className={styles.description}>{t('dictionaryLede')}</p>
       </div>
-      <TrialLock>
+      <TrialLock from="lexicon">
 
       {DICTIONARY.ready ? (
         <div className={`card ${styles.frame}`}>

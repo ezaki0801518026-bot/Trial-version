@@ -12,7 +12,7 @@ function CommunityPage() {
       <PrototypeNotice messageKey="prototypeNoticeGeneral" />
       <h1 className={styles.title}>{t('communityTitle')}</h1>
       <p className={styles.description}>{t('communityDescription')}</p>
-      <TrialLock>
+      <TrialLock from="community">
       <ul className={styles.pointList}>
         <li>{t('communityPoint1')}</li>
         <li>{t('communityPoint2')}</li>

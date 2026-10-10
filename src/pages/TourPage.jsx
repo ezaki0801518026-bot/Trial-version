@@ -23,7 +23,7 @@ function TourPage({ navigate }) {
           {t('tourMapLink')}
         </button>
       </div>
-      <TrialLock>
+      <TrialLock from="tour">
 
       <h2 className={styles.subheading}>{t('tourWhatTitle')}</h2>
       <div className={styles.pointGrid}>

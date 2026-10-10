@@ -118,7 +118,7 @@ function CoursePage({ navigate }) {
             <span className="notice-tag">{t('prototypeTag')}</span>
             <span>{t('courseLessonsDraftNote')}</span>
           </p>
-          <TrialLock>
+          <TrialLock from="lessons">
           <div className={styles.cardList}>
             {activeSections.map((section) => {
               const index = lessons.sections.findIndex((s) => s.id === section.id)

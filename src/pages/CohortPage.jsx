@@ -19,7 +19,7 @@ function CohortPage() {
         <h1 className={styles.title}>{t('cohortTitle')}</h1>
         <p className={styles.lede}>{t('cohortLede')}</p>
       </div>
-      <TrialLock>
+      <TrialLock from="cohort">
 
       <h2 className={styles.subheading}>{t('cohortWhatTitle')}</h2>
       <div className={styles.pointGrid}>

@@ -23,6 +23,11 @@ const strings = {
     prototypeTag: 'Prototype',
     trialUnavailable: 'Not available in the trial version.',
     trialTileLabel: 'Not in the trial',
+    earlyAccessJoin: 'Join the early access list',
+    earlyAccessNotify: 'Notify me when this opens',
+    earlyAccessHeroLine: 'The full WA-Chain Edu opens on 1 November 2026. Nothing to pay now.',
+    earlyAccessAboutLine: 'Want to hear when the full WA-Chain Edu opens?',
+    earlyAccessNewTab: '(opens in a new tab)',
     prototypeNoticeGeneral:
       'This site is a prototype for testing. What is here is unfinished, and the content and the features will change.',
     prototypeNoticeTour:
@@ -740,6 +745,11 @@ const strings = {
     prototypeTag: 'プロトタイプ',
     trialUnavailable: 'トライアル版では使えません。',
     trialTileLabel: 'トライアル版では使えません',
+    earlyAccessJoin: '先行案内リストに登録する',
+    earlyAccessNotify: '公開されたら知らせてほしい',
+    earlyAccessHeroLine: 'WA-Chain Edu の正式版は2026年11月1日に公開予定です。今は料金はかかりません。',
+    earlyAccessAboutLine: 'WA-Chain Edu の正式版の公開をお知らせします。',
+    earlyAccessNewTab: '（新しいタブで開きます）',
     prototypeNoticeGeneral:
       'このサイトは検証用のプロトタイプです。内容も機能も未完成で、今後変わります。',
     prototypeNoticeTour:

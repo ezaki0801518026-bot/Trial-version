@@ -56,7 +56,7 @@ function PricingPage({ navigate }) {
         <h1 className={styles.title}>{t('pricingTitle')}</h1>
         <p className={styles.description}>{t('pricingDescription')}</p>
       </div>
-      <TrialLock>
+      <TrialLock from="pricing">
 
       <div className={styles.tierList}>
         {tiers.map(({ key, featured, features, cta }) => (
