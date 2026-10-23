@@ -5,9 +5,10 @@
 // link we shared) is carried along, so the waitlist can count sign-ups by
 // both. Only the fixed values below are passed on.
 
-// The waitlist's public address (Cloudflare Pages project in the Wait-List
-// repository). Change here if the project ends up with another name.
-export const WAITLIST_URL = 'https://wa-chain-edu-waitlist.pages.dev/'
+// The waitlist's public address: its own subdomain of wa-chain.org (the
+// Cloudflare Pages project in the Wait-List repository; the old pages.dev
+// address redirects here).
+export const WAITLIST_URL = 'https://early.wa-chain.org/'
 
 // Keep in sync with SOURCES / ENTRIES in Wait-List public/shared.js.
 const SOURCES = ['dm', 'interview', 'interview-demo', 'linkedin', 'email']
