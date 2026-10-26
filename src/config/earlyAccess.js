@@ -11,7 +11,11 @@
 export const WAITLIST_URL = 'https://early.wa-chain.org/'
 
 // Keep in sync with SOURCES / ENTRIES in Wait-List public/shared.js.
-const SOURCES = ['dm', 'interview', 'interview-demo', 'linkedin', 'email']
+const SOURCES = [
+  'dm', 'interview', 'interview-demo', 'linkedin', 'email',
+  // Communities we post in (see WA-Chain 売り込み先_コンタクト・投稿手順)
+  'iccrom', 'aca', 'bpg', 'iamabookbinder', 'gbw', 'papermaking',
+]
 export const ENTRIES = [
   'hero', 'about', 'chat', 'washimap', 'lexicon', 'tour',
   'pricing', 'lessons', 'glossary', 'community', 'cohort',
