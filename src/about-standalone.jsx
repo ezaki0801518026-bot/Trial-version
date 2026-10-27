@@ -1,5 +1,8 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom/client'
+import { loadClarity } from './utils/clarity.js'
+
+loadClarity()
 import AboutPage from './pages/AboutPage.jsx'
 import NewsArticlePage from './pages/NewsArticlePage.jsx'
 import news from '../data/news.json'

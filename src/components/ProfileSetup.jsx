@@ -6,6 +6,7 @@ import { writeProfile, markSkipped, markSkippedThisSession } from '../utils/prof
 import { track } from '../utils/analytics.js'
 import HelpTip from './HelpTip.jsx'
 import LangToggle from './LangToggle.jsx'
+import { clarityOn, readConsent, setConsent } from '../utils/clarity.js'
 import styles from './ProfileSetup.module.css'
 
 // Five questions, once. The answers stay in this browser and decide two
@@ -16,6 +17,8 @@ function ProfileSetup({ initial = null, onDone, onClose }) {
   const { t, lang } = useLanguage()
   const [answers, setAnswers] = useState(() => ({ ...(initial || {}) }))
   const panelRef = useRef(null)
+  // Usage measurement: unticked unless this browser said yes before.
+  const [measure, setMeasure] = useState(() => readConsent() === 'granted')
   const label = (field) => field[lang] ?? field.en
 
   // Focus lands inside; the page behind (#root) is inert until the dialog
@@ -105,6 +108,22 @@ function ProfileSetup({ initial = null, onDone, onClose }) {
           </button>
           <p className={styles.note}>{answered === 0 ? t('profileSaveHint') : t('profileStored')}</p>
         </div>
+
+        {clarityOn && (
+          <div className={styles.consent}>
+            <input
+              id="measure-consent"
+              type="checkbox"
+              checked={measure}
+              onChange={(event) => {
+                setMeasure(event.target.checked)
+                setConsent(event.target.checked)
+              }}
+            />
+            <label htmlFor="measure-consent">{t('measureConsentLabel')}</label>
+            <HelpTip label={t('measureConsentHelpLabel')}>{t('measureConsentHelp')}</HelpTip>
+          </div>
+        )}
       </div>
     </div>,
     document.body,

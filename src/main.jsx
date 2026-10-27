@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { loadClarity } from './utils/clarity.js'
+
+loadClarity()
 import App from './App.jsx'
 import './tokens.css'
 import './ui.css'

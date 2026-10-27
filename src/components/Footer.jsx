@@ -2,6 +2,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 import SocialIcon, { socialLabel } from './SocialIcon.jsx'
 import { TEAM_SOCIAL } from '../config/social.js'
 import styles from './Footer.module.css'
+import { clarityOn } from '../utils/clarity.js'
 
 // The three blocks of the course page (ids `track-<id>` on their headings).
 const TRACKS = [
@@ -107,6 +108,14 @@ function Footer({ navigate }) {
         </div>
       </div>
 
+      {clarityOn && (
+        <p className={styles.copyright}>
+          {t('footerMeasure')}{' '}
+          <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">
+            {t('footerMeasureLink')}
+          </a>
+        </p>
+      )}
       <p className={styles.copyright}>{t('footerCopyright', { year })}</p>
     </footer>
   )

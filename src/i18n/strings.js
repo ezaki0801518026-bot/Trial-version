@@ -723,6 +723,12 @@ const strings = {
     footerWaChainTitle: 'About WA-Chain',
     footerWaChainDesc: 'A provenance and treatment-history record for conserved works.',
     footerCopyright: '© {{year}} WA-Chain. All rights reserved.',
+    footerMeasure: 'This trial uses Microsoft Clarity to see how pages are used (clicks and scrolling, with anything typed hidden).',
+    footerMeasureLink: 'Microsoft privacy statement',
+    measureConsentLabel: 'Allow anonymous measurement of how this trial is used, to help us improve it.',
+    measureConsentHelpLabel: 'About the measurement',
+    measureConsentHelp:
+      'We use Microsoft Clarity to see where people click and how far they read. It does not record anything you type, and nothing is used for advertising. Visitors from the EU, the UK and Switzerland are measured only if this box is ticked. You can change this any time from Menu → your five answers.',
   },
   ja: {
     appTitle: 'WA-Chain',
@@ -1443,6 +1449,12 @@ const strings = {
     footerWaChainTitle: 'WA-Chainについて',
     footerWaChainDesc: '修理を受けた作品の来歴と処置履歴を記録する仕組み。',
     footerCopyright: '© {{year}} WA-Chain. All rights reserved.',
+    footerMeasure: 'このトライアル版では、ページの使われ方（クリックやスクロール。入力した文字は記録しません）を Microsoft Clarity で計測しています。',
+    footerMeasureLink: 'Microsoft のプライバシーに関する声明',
+    measureConsentLabel: 'このトライアル版の改善のため、匿名の利用状況の計測を許可する',
+    measureConsentHelpLabel: '計測について',
+    measureConsentHelp:
+      'Microsoft Clarity を使い、どこがクリックされ、どこまで読まれたかを見ています。入力した文字は記録せず、広告には使いません。EU・英国・スイスからの方は、この欄にチェックした場合だけ計測します。メニューの「5つの質問」からいつでも変更できます。',
   },
 }
 

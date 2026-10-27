@@ -28,7 +28,9 @@ const KEY = 'wa-trial-src'
 function arrivalSource() {
   let src = null
   try {
-    const value = (new URLSearchParams(window.location.search).get('src') || '').toLowerCase()
+    // ?src= is ours; ?utm_source= is what LinkedIn posts carry (2026-10-27).
+    const params = new URLSearchParams(window.location.search)
+    const value = (params.get('src') || params.get('utm_source') || '').toLowerCase()
     if (SOURCES.includes(value)) {
       src = value
       sessionStorage.setItem(KEY, value)
