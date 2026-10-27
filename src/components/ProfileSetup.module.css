@@ -59,6 +59,27 @@
   gap: var(--space-2);
 }
 
+/* The measurement consent: one unticked box under the buttons. */
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-separator);
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+  color: var(--color-text-secondary);
+}
+
+.consent input {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.1rem 0 0;
+  accent-color: var(--color-accent-solid);
+}
+
 .note {
   flex-basis: 100%;
   font-size: var(--text-caption);
